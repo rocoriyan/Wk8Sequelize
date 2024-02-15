@@ -23,7 +23,7 @@ const addBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => { //i broke this.. 
     try {
-        const books = await Book.findAll({ inside: "Genre" });
+        const books = await Book.findAll({ include: ["Genre", "Author"] });
         res.status(201).json({ message: "success got all books", books: books });
     }
     catch(error){

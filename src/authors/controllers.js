@@ -14,7 +14,7 @@ const addAuthor = async (req, res) => {
 
 const getAllAuthors = async (req, res) => {
     try {
-        const authors = await Author.findAll({ inside: "Author" });
+        const authors = await Author.findAll({});
         res.status(201).json({ message: "success got all authors", authors: authors });
     }
     catch(error){
