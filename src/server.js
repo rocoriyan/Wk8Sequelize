@@ -7,6 +7,9 @@ const bookRouter = require("./books/routes");
 const Genre = require("./genres/model")
 const genreRouter = require("./genres/routes");
 
+const Author = require("./authors/model")
+const authorRouter = require("./authors/routes");
+
 const port = process.env.PORT || 5001;
 
 const app = express();
@@ -15,13 +18,18 @@ app.use(express.json());
 
 app.use(bookRouter);
 app.use(genreRouter);
+app.use(authorRouter);
 
 const syncTables = () => {
     Genre.hasOne(Book);
     Book.belongsTo(Genre);
 
+    Author.hasMany(Book);
+    Book.belongsTo(Author);
+
     Genre.sync();
     Book.sync();
+    Author.sync();
 };
 
 app.get("/health", (req, res) =>{

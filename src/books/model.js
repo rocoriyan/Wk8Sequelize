@@ -8,11 +8,11 @@ const Book = sequelize.define("Book", {
         unique: true,
         allowNull: false,
     },
-    author: {
+    /*author: {
         type: DataTypes.STRING,
         defaultValue: "some author",
 
-    },/*
+    },
     genre: {
         type: DataTypes.STRING,
         defaultValue: "some genre",

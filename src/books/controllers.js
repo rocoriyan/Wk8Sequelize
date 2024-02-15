@@ -11,7 +11,7 @@ const addBook = async (req, res) => {
     try {
         const book = await Book.create({
             title: req.body.title,
-            author: req.body.author,
+            AuthorId: req.body.AuthorId,
             GenreId: req.body.GenreId,
         });
         res.status(201).json({ message: `${book.title} was added`, book: book });
