@@ -15,4 +15,6 @@ bookRouter.post("/books/addBook", cntrlFuncs.addBook);
 
 bookRouter.get("/books/getAllBooks", cntrlFuncs.getAllBooks);
 
+bookRouter.get("/books/getSingleBookByTitle/:bookTitle", cntrlFuncs.getSingleBookByTitle);
+
 module.exports = bookRouter;

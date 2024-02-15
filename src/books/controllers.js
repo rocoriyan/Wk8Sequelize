@@ -1,4 +1,6 @@
 const Book = require("./model");
+const Genre = require("../genres/model.js");
+const Author = require("../authors/model.js");
 
 const addBook = async (req, res) => {
     /*body:
@@ -31,7 +33,20 @@ const getAllBooks = async (req, res) => { //i broke this..
     }
 };
 
+const getSingleBookByTitle = async (req,res) => {
+    try{
+        const book = await Book.findOne({ where: { title: req.params.bookTitle } });
+        const genre = await Genre.findOne({ where: { id: book.GenreId } });
+        const author = await Author.findOne({ where: { id: book.AuthorId } });
+        res.send({ message: "success got book", book: book, genre: genre, author: author });
+    }
+    catch(error){
+        res.status(500).json({ message: error.message, error: error });
+    }
+};
+
 module.exports = {
     addBook: addBook,
     getAllBooks: getAllBooks,
+    getSingleBookByTitle: getSingleBookByTitle,
 };
