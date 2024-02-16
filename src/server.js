@@ -21,7 +21,7 @@ app.use(genreRouter);
 app.use(authorRouter);
 
 const syncTables = () => {
-    Genre.hasOne(Book);
+    Genre.hasMany(Book);
     Book.belongsTo(Genre);
 
     Author.hasMany(Book);

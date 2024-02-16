@@ -45,8 +45,37 @@ const getSingleBookByTitle = async (req,res) => {
     }
 };
 
+const getBooksByAuthor = async (req, res) => {
+    try{
+        const books = await Book.findAll({ where: { AuthorId: req.params.authorId } });
+        const author = await Author.findOne({ where: { id: req.params.authorId } });
+        res.send({ message: `Success: Got all books from ${author.authorName}`, books: books});
+    }
+    catch(error){
+        res.status(500).json({ message: error.message, error: error });
+    }
+}
+
+const updateBookByTitle = async (req, res) => {
+    try{
+        const newBookData = {
+            title: req.body.title,
+            GenreID: req.body.GenreID,
+            AuthorID: req.body.AuthorID
+        }
+        await Book.update(newBookData, { where: { title: req.params.bookTitle } });
+        const book = await Book.findOne({ where: { title: newBookData.title } });
+        res.send({ message: `Success: Updated information for input '${req.params.bookTitle}'`, 'new book data': book});
+    }
+    catch(error){
+        res.status(500).json({ message: error.message, error: error });
+    }
+}
+
 module.exports = {
     addBook: addBook,
     getAllBooks: getAllBooks,
     getSingleBookByTitle: getSingleBookByTitle,
+    getBooksByAuthor: getBooksByAuthor,
+    updateBookByTitle: updateBookByTitle,
 };

@@ -17,4 +17,8 @@ bookRouter.get("/books/getAllBooks", cntrlFuncs.getAllBooks);
 
 bookRouter.get("/books/getSingleBookByTitle/:bookTitle", cntrlFuncs.getSingleBookByTitle);
 
+bookRouter.get("/books/getBooksByAuthor/:authorId", cntrlFuncs.getBooksByAuthor);
+
+bookRouter.put("/books/updateBookByTitle/:bookTitle", cntrlFuncs.updateBookByTitle);
+
 module.exports = bookRouter;
