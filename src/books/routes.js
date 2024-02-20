@@ -21,4 +21,8 @@ bookRouter.get("/books/getBooksByAuthor/:authorId", cntrlFuncs.getBooksByAuthor)
 
 bookRouter.put("/books/updateBookByTitle/:bookTitle", cntrlFuncs.updateBookByTitle);
 
+bookRouter.delete("/books/deleteBookByTitle/:bookTitle", cntrlFuncs.deleteBookByTitle);
+
+bookRouter.delete("/books/deleteAllBooks", cntrlFuncs.deleteAllBooks);
+
 module.exports = bookRouter;
